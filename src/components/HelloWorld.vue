@@ -33,6 +33,7 @@
 <script>
 export default {
   name: 'HelloWorld',
+  // props 指定变量的类型
   props: {
     msg: String
   }
