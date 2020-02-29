@@ -4,32 +4,17 @@ import App from './App.vue';
 import './assets/style/border.css';
 import './assets/style/reset.css';
 import VueRouter from 'vue-router';
-import Goods from './components/goods/goods';
-import Ratings from './components/ratings/ratings';
-import Sellers from './components/sellers/seller';
+import { routes } from './routes';
+import './commons/stylus/index.styl';
 
 Vue.config.productionTip = false;
-
-const routes = [
-  {
-    path: '/goods',
-    component: Goods
-  },
-  {
-    path: '/ratings',
-    component: Ratings
-  },
-  {
-    path: '/sellers',
-    component: Sellers
-  }
-];
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes,
   mode: 'history',
+  linkActiveClass: 'active', // 修改linkActiveClass的默认属性值为active
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;

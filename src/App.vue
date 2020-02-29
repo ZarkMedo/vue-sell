@@ -2,7 +2,7 @@
   <div>
     <v-header/>
     <div class="tab">
-      <div class="tab-item">
+      <div class="tab-item border-t-1px ">
         <router-link class="tab-link" to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
@@ -27,17 +27,21 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "./commons/stylus"
   .tab
     display: flex
     height: 40px
     width: 100%
     line-height: 40px
+    border-b-1px(rgba(7,17,27,0.1))
     .tab-item
       flex: 1
       text-align: center
       &>a
-        color: red
+        color: rgb(77, 85, 93)
         display :block
         font-size: 24px
+        &.active
+          color: rgb(240, 20, 20)
 
 </style>
