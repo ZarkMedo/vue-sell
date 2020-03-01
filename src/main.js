@@ -6,10 +6,12 @@ import './assets/style/reset.css';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 import './commons/stylus/index.styl';
+import VueResource from 'vue-resource';
 
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 const router = new VueRouter({
   routes,

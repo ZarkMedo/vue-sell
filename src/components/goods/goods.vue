@@ -1,6 +1,10 @@
 <template>
   <div class="goods">
-      我是goods
+    <p>我是goods</p>
+    <!--<div>-->
+      <!--<router-link to="/test">go to test</router-link>-->
+    <!--</div>-->
+    <!--<router-view></router-view>-->
   </div>
 
 </template>
@@ -11,7 +15,6 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .goods
-    display: block
-
+  a
+    font-size : 10px
 </style>

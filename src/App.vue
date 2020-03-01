@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header/>
+    <v-header :seller="seller"></v-header>
     <div class="tab">
       <div class="tab-item border-t-1px ">
         <router-link class="tab-link" to="/goods">商品</router-link>
@@ -19,7 +19,24 @@
 <script>
   import header from './components/header/header';
 
+  const OKERR = 0;
   export default {
+    // 返回数据使用，是一个方法
+    data () {
+     return {
+       seller: {}
+     };
+    },
+    created () {
+      // 创建后，发起请求，获取数据
+      this.$http.get('/api/seller').then((res) => {
+       const body = res.body;
+       if (body.errno === OKERR) {
+         this.seller = body.data;
+         console.log(body.data);
+       }
+      });
+    },
     components: {
       'v-header': header
     }
