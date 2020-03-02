@@ -3,7 +3,7 @@
     <v-header :seller="seller"></v-header>
     <div class="tab">
       <div class="tab-item border-t-1px ">
-        <router-link class="tab-link" to="/goods">商品</router-link>
+        <router-link class="tab-link" to="/goods" >商品</router-link>
       </div>
       <div class="tab-item">
         <router-link class="tab-link" to="/ratings">评论</router-link>
@@ -33,7 +33,6 @@
        const body = res.body;
        if (body.errno === OKERR) {
          this.seller = body.data;
-         console.log(body.data);
        }
       });
     },

@@ -32,11 +32,45 @@
     <div class="background">
       <img :src="seller.avatar" alt="背景图" width="100%" height="100%">
     </div>
-    <div class="detail" v-show="showDetail"></div>
+    <div class="detail" v-show="showDetail">
+      <div class="detail-wrapper clear-fix">
+        <div class="detail-main">
+          <div class="name">
+            {{seller.name}}
+          </div>
+          <div class="stars-wrapper">
+            <v-star :size="48" :full-score="5" :score="seller.score" ></v-star>
+          </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="content">优惠信息</div>
+            <div class="line"></div>
+          </div>
+          <div v-if="seller.supports" class="support">
+            <div class="support-item" v-for="(item,index) in seller.supports" :key="index">
+              <i class="icon" :class="classMap[item.type]"></i>
+              <span class="content">{{item.description}}</span>
+            </div>
+          </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="content">商家公告</div>
+            <div class="line"></div>
+          </div>
+          <div class="bulletin">
+            <span class="content">{{seller.bulletin}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-close" @click="closeDetail">
+        <i class="icon-close"></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script type="application/javascript">
+  import Star from '../../components/stars/stars';
   export default {
       props: {
         seller: Object
@@ -49,11 +83,17 @@
     methods: {
           toDetail () {
             this.showDetail = true;
-        }
-    },
-      created () {
-        this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
+        },
+      closeDetail () {
+        this.showDetail = false;
       }
+    },
+    created () {
+        this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
+      },
+    components: {
+       'v-star': Star
+    }
   };
 
 </script>
@@ -176,11 +216,88 @@
       filter : blur(10px)
       z-index: -1
     .detail
-      position: fixed;
+      position :fixed
       width : 100%
       height: 100%
       top : 0
       left : 0
       z-index : 100
-      background : rgba(7,17,27, 0.5)
+      overflow : auto
+      background : rgba(7,17,27, 0.9)
+      .detail-wrapper
+        width : 100%
+        min-height : 100%
+        color : rgb(255,255,255)
+        .detail-main
+          margin-top : 64px
+          padding-bottom : 64px
+          .name
+            font-size: 16px
+            font-weight: 700
+            line-height : 16px
+            text-align : center
+      .title
+        display: flex
+        width : 80%
+        margin: 28px auto 24px auto
+        .content
+          padding: 0 12px
+          font-size : 14px
+          font-weight: 700
+        .line
+          flex :1
+          position: relative
+          bottom : 6px
+          border-bottom: 1px solid rgba(255,255,255,0.2)
+      .support
+        width : 80%
+        margin : 0 auto
+        .support-item
+          margin-top: 10px
+          font-size : 0
+          &:last-child
+            margin-bottom:0
+          .content
+            font-weight : 200
+            font-size : 12px
+            color: rgb(255,255,255)
+            line-height : 16px
+            margin-left: 12px
+          .icon
+            display: inline-block
+            vertical-align: top
+            padding-right: 6px
+            width: 16px
+            height: 16px
+            background-size: 16px 16px
+            background-repeat: no-repeat
+            &.decrease
+              bg-image("decrease_2")
+            &.discount
+              bg-image("discount_2")
+            &.guarantee
+              bg-image("guarantee_2")
+            &.invoice
+              bg-image("invoice_2")
+            &.special
+              bg-image("special_2")
+      .bulletin
+        width:70%
+        margin : 0 auto
+        .content
+          padding: 0 12px
+          font-size : 12px
+          font-weight: 200
+          line-height : 24px
+      .detail-close
+        position : relative
+        margin : -64px auto 0 auto
+        font-size : 32px
+        width : 32px
+        height : 32px
+        clear : both
+      .stars-wrapper
+        margin-top : 16px
+        padding: 2px 0
+        text-align :center
 </style>
