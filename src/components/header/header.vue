@@ -32,6 +32,8 @@
     <div class="background">
       <img :src="seller.avatar" alt="背景图" width="100%" height="100%">
     </div>
+    <!--使用vue定义当前div下的动画效果-->
+    <transition name="fade">
     <div class="detail" v-show="showDetail">
       <div class="detail-wrapper clear-fix">
         <div class="detail-main">
@@ -65,8 +67,9 @@
       <div class="detail-close" @click="closeDetail">
         <i class="icon-close"></i>
       </div>
+      </div>
+      </transition>
     </div>
-  </div>
 </template>
 
 <script type="application/javascript">
@@ -224,6 +227,12 @@
       z-index : 100
       overflow : auto
       background : rgba(7,17,27, 0.9)
+      opacity : 1
+      &.fade-enter-active, &.fade-leave-active
+        transition : all 3s
+      &.fade-enter, &.fade-leave-active
+        opacity:0
+        background: rgb(7,17,27)
       .detail-wrapper
         width : 100%
         min-height : 100%
